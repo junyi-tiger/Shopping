@@ -1,4 +1,4 @@
-package com.shopping.filter;
+package com.shopping.Filter;
 
 import javax.servlet.*;
 import java.io.IOException;

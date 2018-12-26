@@ -9,7 +9,7 @@
 
   <!--配置默认进入页面-->
   <welcome-file-list>
-    <welcome-file>/userLogin.jsp</welcome-file>
+    <welcome-file>/WEB-INF/views/main.jsp</welcome-file>
   </welcome-file-list>
 
 
@@ -42,35 +42,33 @@
     <async-supported>true</async-supported>
   </servlet>
 
-  <!--&lt;!&ndash; 配置Hibernate Session &ndash;&gt;-->
-  <!--<filter-mapping>-->
-    <!--<filter-name>openSession</filter-name>-->
-    <!--<url-pattern>/*</url-pattern>-->
-  <!--</filter-mapping>-->
-
-  <!--<filter>-->
-    <!--<filter-name>openSession</filter-name>-->
-    <!--<filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>-->
-  <!--</filter>-->
-
-  <!--                    过滤器                      -->
-  <!-- 编码过滤器 -->
-  <filter>
-    <filter-name>EncodeFilter</filter-name>
-    <filter-class>com.shopping.filter.EncodingFilter</filter-class>
-  </filter>
+  <!-- 配置Hibernate Session -->
   <filter-mapping>
-    <filter-name>EncodeFilter</filter-name>
+    <filter-name>openSession</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 
-     <!--登录验证过滤器-->
-    <filter>
-        <filter-name>LoginFilter</filter-name>
-        <filter-class>com.shopping.filter.LoginFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>LoginFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
+  <filter>
+    <filter-name>openSession</filter-name>
+    <filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
+  </filter>
+
+  <!-- 配置字符集 -->
+  <filter>
+    <filter-name>encodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+    <init-param>
+      <param-name>forceEncoding</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>encodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
 </web-app>
